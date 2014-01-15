@@ -1,0 +1,6 @@
+body { font-family: Arial; }
+button.destroy { width: 16px; height: 16px; }
+#filters li { display: inline-block; margin: 0; padding: 0; }
+#filters li + li:before { content: ' | '; }
+ul#todo-list { border: 1px solid #339; background: #eef; padding: 10px; margin: 10px 0; list-style: none; }
+#todo-list li { margin: 10px; padding: 0; }
