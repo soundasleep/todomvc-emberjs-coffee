@@ -35,6 +35,14 @@ module.exports = function(grunt) {
         src: ['*.coffee'],
         dest: 'js/',
         ext: '.js'
+      },
+      glob_to_multiple2: {
+        expand: true,
+        flatten: true,
+        cwd: 'js/models/',
+        src: ['*.coffee'],
+        dest: 'js/models/',
+        ext: '.js'
       }
     }
   });
