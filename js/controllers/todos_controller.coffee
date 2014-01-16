@@ -1,3 +1,5 @@
+# controller for View Todos
+
 Todos.TodosController = Ember.ArrayController.extend(actions:
   createTodo: ->
     
