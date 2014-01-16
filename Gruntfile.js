@@ -22,8 +22,10 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint', 'qunit']
+      coffeescripts: {
+        files: ['**/*.coffee'],
+        tasks: ['coffee']
+      }
     },
     coffee: {
       glob_to_multiple: {
