@@ -10,7 +10,8 @@
     "grunt-contrib-coffee": "~0.8.0",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-qunit": "~0.3.0",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-contrib-watch": "~0.5.3",
+    "moment": "~2.5.0"
   },
   "repository": {
     "type": "git",

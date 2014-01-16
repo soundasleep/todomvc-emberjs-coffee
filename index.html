@@ -8,6 +8,8 @@
     <script src="js/libs/handlebars-1.0.0.js"></script>
     <script src="js/libs/ember.js"></script>
     <script src="js/libs/ember-data.js"></script>
+    <!-- I'm sure there's a better way of doing this -->
+    <script src="node_modules/moment/moment.js"></script>
   </head>
   <body>  
     <script type="text/x-handlebars" data-template-name="todos">
@@ -29,6 +31,7 @@
                 <input type="checkbox" class="toggle" {{bind-attr checked="isCompleted"}}>
                 {{title}}
                 </label><button class="destroy"></button>
+                <span class="createdAt">{{recentDate created}}</span>
               </li>
             {{/each}}
           </ul>
