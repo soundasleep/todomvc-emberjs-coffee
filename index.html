@@ -20,9 +20,11 @@
         <section id="main">
           <ul id="todo-list">
             {{#each}}
-              <li>
+              <!-- binds 'completed' class to li if 'isCompleted' is 'true' -->
+              <li {{bind-attr class="isCompleted:completed"}}>
                 <label>
-                <input type="checkbox" class="toggle">
+                <!-- 'checked' has no value, so there's no value in the bind-attr rule -->
+                <input type="checkbox" class="toggle" {{bind-attr checked="isCompleted"}}>
                 {{title}}
                 </label><button class="destroy"></button>
               </li>
