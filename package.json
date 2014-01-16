@@ -1,0 +1,19 @@
+{
+  "name": "todomvc-emberjs-coffee",
+  "version": "0.0.1",
+  "author": "Jevon Wright <jevon@rabidtech.co.nz>",
+  "description": "An implementation of TodoMVC using EmberJS and CoffeeScript (hopefully)",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-coffee": "~0.8.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-qunit": "~0.3.0",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soundasleep/todomvc-emberjs-coffee.git"
+  }
+}
