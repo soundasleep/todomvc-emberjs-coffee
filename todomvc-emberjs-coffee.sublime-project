@@ -2,7 +2,8 @@
 	"folders":
 	[
 		{
-			"path": "/C/rabid/todomvc-emberjs-coffee"
+			"path": "/C/rabid/todomvc-emberjs-coffee",
+			"file_exclude_patterns": ["js/*.js", "*.sublime-workspace"]
 		}
 	]
 }
