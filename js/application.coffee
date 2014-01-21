@@ -4,5 +4,5 @@ window.Todos = Ember.Application.create()
 Todos.ApplicationAdapter = DS.FixtureAdapter.extend()
 
 Ember.Handlebars.helper('recentDate', (date) ->
-	return moment(date).fromNow()
+	return moment(new Date(date)).fromNow()
 )

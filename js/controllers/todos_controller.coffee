@@ -11,7 +11,7 @@ Todos.TodosController = Ember.ArrayController.extend(actions:
     todo = @store.createRecord("todo",
       title: title
       isCompleted: false
-      created: new Date()     # extension: also define the created date
+      created: new Date().toString()     # extension: also define the created date
     )
     
     # Clear the "New Todo" text field
