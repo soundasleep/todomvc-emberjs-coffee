@@ -4,5 +4,5 @@ button.destroy { width: 16px; height: 16px; vertical-align: text-bottom; }
 #filters li + li:before { content: ' | '; }
 ul#todo-list { border: 1px solid #339; background: #eef; padding: 10px; margin: 10px 0; list-style: none; }
 #todo-list li { margin: 10px; padding: 0; }
-li.completed { color: #666; text-decoration: line-through; }
+li.completed, li.completed input[type="text"] { color: #666; text-decoration: line-through; }
 .createdAt { font-size: 70%; }

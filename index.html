@@ -27,12 +27,21 @@
           <ul id="todo-list">
             {{#each itemController="todo"}}
               <!-- binds 'completed' class to li if 'isCompleted' is 'true' -->
-              <li {{bind-attr class="isCompleted:completed"}}>
-                <label>
-                <!-- 'checked' has no value, so there's no value in the bind-attr rule -->
-                {{input type="checkbox" class="toggle" checked=isCompleted}}
-                {{title}}
-                </label><button class="destroy"></button>
+              <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
+                {{#if isEditing}}
+                  <!-- 'checked' has no value, so there's no value in the bind-attr rule -->
+                  <label>
+                  {{input type="checkbox" class="toggle" checked=isCompleted}}
+                  </label>
+                  <!-- do not wrap the input with a label, it will steal the click and prevent event bubbling -->
+                  {{input class="edit"}}
+                {{else}}
+                  <label {{action "editTodo" on="doubleClick"}}>
+                  <!-- 'checked' has no value, so there's no value in the bind-attr rule -->
+                  {{input type="checkbox" class="toggle" checked=isCompleted}}
+                  {{title}}
+                  </label><button class="destroy"></button>
+                {{/if}}
                 <span class="createdAt">{{recentDate created}}</span>
               </li>
             {{/each}}
