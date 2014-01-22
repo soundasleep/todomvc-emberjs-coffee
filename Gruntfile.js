@@ -51,6 +51,14 @@ module.exports = function(grunt) {
         src: ['*.coffee'],
         dest: 'js/controllers/',
         ext: '.js'
+      },
+      glob_to_multiple4: {
+        expand: true,
+        flatten: true,
+        cwd: 'js/views/',
+        src: ['*.coffee'],
+        dest: 'js/views/',
+        ext: '.js'
       }
     }
   });

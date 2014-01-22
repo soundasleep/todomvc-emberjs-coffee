@@ -34,7 +34,8 @@
                   {{input type="checkbox" class="toggle" checked=isCompleted}}
                   </label>
                   <!-- do not wrap the input with a label, it will steal the click and prevent event bubbling -->
-                  {{input class="edit"}}
+                  <!-- uses helper in views/edit_todo_view -->
+                  {{edit-todo class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges"}}
                 {{else}}
                   <label {{action "editTodo" on="doubleClick"}}>
                   <!-- 'checked' has no value, so there's no value in the bind-attr rule -->
@@ -83,5 +84,6 @@
     <script src="js/models/todo.js"></script>
     <script src="js/controllers/todos_controller.js"></script>
     <script src="js/controllers/todo_controller.js"></script>
+    <script src="js/views/edit_todo_view.js"></script>
   </body>
 </html>
