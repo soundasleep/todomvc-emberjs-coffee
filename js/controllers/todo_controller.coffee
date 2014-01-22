@@ -30,5 +30,11 @@ Todos.TodoController = Ember.ObjectController.extend(
         @get('model').save()
     )
 
+    removeTodo: ( ->
+      todo = @get('model')
+      todo.deleteRecord()
+      todo.save()
+    )
+
   isEditing: false
 )
