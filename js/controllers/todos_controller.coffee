@@ -21,10 +21,24 @@ Todos.TodosController = Ember.ArrayController.extend(
       # Save the new model
       todo.save()
 
+    clearCompleted: ->
+      completed = @filterBy('isCompleted', true)
+      # note filterBy returns an EmberArray not a record, so we have to 'invoke' the methods we want on the result (ew)
+      completed.invoke('deleteRecord')
+      completed.invoke('save')
+
   # this is basically creating a runtime property/attribute that can be listened to?
   remaining: ( -> 
     @filterBy('isCompleted', false).get('length')   # implicit return
-  ).property('@each.isCompleted')   # listening to the changes of another property? '@' special charracter?
+  ).property('@each.isCompleted')   # listening to the changes of another property? '@' special character?
+
+  completed: ( -> 
+    @filterBy('isCompleted', true).get('length')   # implicit return
+  ).property('@each.isCompleted')   # listening to the changes of another property? '@' special character?
+
+  hasCompleted: ( ->
+    @get('completed') > 0
+  ).property('completed')
 
   items: ( ->
     remaining = @get('remaining')
