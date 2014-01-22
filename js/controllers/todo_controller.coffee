@@ -37,4 +37,6 @@ Todos.TodoController = Ember.ObjectController.extend(
     )
 
   isEditing: false
+
+  needs: ['todos']
 )

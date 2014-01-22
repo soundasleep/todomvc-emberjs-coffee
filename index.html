@@ -13,6 +13,7 @@
   </head>
   <body>  
     <script type="text/x-handlebars" data-template-name="todos">
+      {{this}}
       <section id="todoapp">
         <header id="header">
           <h1>Todos</h1>
@@ -50,9 +51,8 @@
           </ul>
 
           {{#if hasCompleted}}
-            <button id="clear-completed" {{action "clearCompleted"}}>
-              Clear completed ({{completed}})
-            </button>
+            route = {{route}}
+            {{outlet button}}
           {{/if}}
         </footer>
       </section>
@@ -63,6 +63,7 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="todos/index">
+      {{route}}
       <ul id="todo-list">
         {{#each itemController="todo"}}
           <!-- binds 'completed' class to li if 'isCompleted' is 'true' -->
@@ -86,6 +87,13 @@
           </li>
         {{/each}}
       </ul>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="todos/button">
+      route = {{route}}
+      <button id="clear-completed" {{action "clearCompleted"}}>
+        Clear completed ({{completed}})
+      </button>
     </script>
 
     <!-- TODO use a Grunt script to combine all of these scripts into one -->

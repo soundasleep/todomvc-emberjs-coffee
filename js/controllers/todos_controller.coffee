@@ -27,6 +27,9 @@ Todos.TodosController = Ember.ArrayController.extend(
       completed.invoke('deleteRecord')
       completed.invoke('save')
 
+      # if we are currently on the /completed filter, we will have nothing remaining; redirect to the all filter
+      if @get('currentPath') is 'completed' then @transitionToRoute 'index'
+
   # this is basically creating a runtime property/attribute that can be listened to?
   remaining: ( -> 
     @filterBy('isCompleted', false).get('length')   # implicit return
@@ -52,4 +55,5 @@ Todos.TodosController = Ember.ArrayController.extend(
   remainingText: ( ->
     (if @get('remaining') is 0 then "No" else @get('remaining'))
   ).property('remaining')
+
 )

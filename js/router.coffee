@@ -15,12 +15,20 @@ Todos.TodosRoute = Ember.Route.extend(
 Todos.TodosIndexRoute = Ember.Route.extend(
 	model: ->
 		# return the same model as for the route 'todos' (i.e. return the same model as used in Todos.TodosRoute)
-		@modelFor 'todos'		# implicit return; also the same as @modelFor('todos')
+		@modelFor 'todos'
 
 	# TODO test: can we create a renderTemplate as below, i.e. we get an implicit renderTemplate based on the naming convention of this route?
 	renderTemplate: (controller) ->
 		@render 'todos/index',
 			controller: controller
+
+		@render 'todos/button',
+			outlet: 'button',
+			controller: controller
+
+	setupController: (controller, model) ->
+		controller.set 'route', 'index'
+		controller.set 'model', model
 )
 
 Todos.TodosActiveRoute = Ember.Route.extend(
@@ -31,6 +39,10 @@ Todos.TodosActiveRoute = Ember.Route.extend(
 	renderTemplate: (controller) ->
 		@render 'todos/index', 
 			controller: controller
+
+		@render 'todos/button',
+			outlet: 'button',
+			controller: controller
 )
 
 Todos.TodosCompletedRoute = Ember.Route.extend(
@@ -40,5 +52,9 @@ Todos.TodosCompletedRoute = Ember.Route.extend(
 
 	renderTemplate: (controller) ->
 		@render 'todos/index', 
+			controller: controller
+
+		@render 'todos/button',
+			outlet: 'button',
 			controller: controller
 )
