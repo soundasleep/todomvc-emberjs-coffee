@@ -3,7 +3,8 @@ Todos.Router.map ->
 		path: '/',
 		->			# yes, we require an empty function here so that child routes will work at all: see https://github.com/emberjs/website/pull/1252
 			@route 'active'
-			@route 'all'
+			@route 'completed'
+			# also a route todos.index which is always present
 
 # create a route for displaying all todos
 Todos.TodosRoute = Ember.Route.extend(
@@ -22,12 +23,20 @@ Todos.TodosIndexRoute = Ember.Route.extend(
 			controller: controller
 )
 
-Todos.TodosAllRoute = Todos.TodosIndexRoute	# a quick and easy way to duplicate route functionality
-
 Todos.TodosActiveRoute = Ember.Route.extend(
 	model: ->
 		@store.filter 'todo', (todo) ->			# implicit return
 			!todo.get 'isCompleted'					# implicit return
+
+	renderTemplate: (controller) ->
+		@render 'todos/index', 
+			controller: controller
+)
+
+Todos.TodosCompletedRoute = Ember.Route.extend(
+	model: ->
+		@store.filter 'todo', (todo) ->			# implicit return
+			todo.get 'isCompleted'					# implicit return
 
 	renderTemplate: (controller) ->
 		@render 'todos/index', 

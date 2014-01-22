@@ -38,14 +38,14 @@
           <ul id="filters">
             <!-- TODO <a>s should not "href" invalid URLs? -->
             <li>
-              {{#link-to "todos.all" activeClass="selected"}}All{{/link-to}}
+              {{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
             </li>
             <li>
               <!-- uses handlebars helper -->
-              {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
+              {{#link-to "todos.active" activeClass="selected"}}Outstanding{{/link-to}}
             </li>
             <li>
-              <a href="completed">Completed</a>
+              {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
             </li>
           </ul>
 
