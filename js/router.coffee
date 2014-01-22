@@ -8,8 +8,15 @@ Todos.Router.map ->
 
 # create a route for displaying all todos
 Todos.TodosRoute = Ember.Route.extend(
+	# I'm not sure this actually does anything
 	model: ->
-  	@store.find "todo"
+  	@store.find "todo",
+
+  # so we can get access to Feed too
+  # Ember is designed to have a single model item for a single route? so we have to extend it this way? seems a bit weird
+  setupController: (controller, model) ->
+  	controller.set('model', model)
+  	controller.set('feed', @store.find('feed'))
 )
 
 Todos.TodosIndexRoute = Ember.Route.extend(
@@ -41,4 +48,12 @@ Todos.TodosCompletedRoute = Ember.Route.extend(
 	renderTemplate: (controller) ->
 		@render 'todos/index', 
 			controller: controller
+)
+
+Todos.FeedRoute = Ember.Route.extend(
+	model: ->
+		@store.find 'feed'
+
+	setupController: (controller, feed) ->
+		feed.refresh()
 )

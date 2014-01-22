@@ -55,11 +55,22 @@
             </button>
           {{/if}}
         </footer>
+
+        {{partial feed}}
       </section>
 
       <footer id="info">
         <p>Double-click to edit a todo</p>
       </footer>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="_feed">
+      Feed items!
+
+      {{controller.feed}}
+      {{#each controller.feed}}
+        URL: {{url}}
+      {{/each}}
     </script>
 
     <script type="text/x-handlebars" data-template-name="todos/index">
@@ -92,6 +103,8 @@
     <script src="js/application.js"></script>
     <script src="js/router.js"></script>
     <script src="js/models/todo.js"></script>
+    <script src="js/models/feed.js"></script>
+    <script src="js/models/feeditem.js"></script>
     <script src="js/controllers/todos_controller.js"></script>
     <script src="js/controllers/todo_controller.js"></script>
     <script src="js/views/edit_todo_view.js"></script>
