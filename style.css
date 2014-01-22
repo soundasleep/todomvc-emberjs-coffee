@@ -6,3 +6,4 @@ ul#todo-list { border: 1px solid #339; background: #eef; padding: 10px; margin: 
 #todo-list li { margin: 10px; padding: 0; }
 li.completed, li.completed input[type="text"] { color: #666; text-decoration: line-through; }
 .createdAt { font-size: 70%; }
+a.selected { font-weight: bold; color: black; text-decoration: none; }
