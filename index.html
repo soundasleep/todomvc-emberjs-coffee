@@ -24,29 +24,9 @@
         </header>
 
         <section id="main">
-          <ul id="todo-list">
-            {{#each itemController="todo"}}
-              <!-- binds 'completed' class to li if 'isCompleted' is 'true' -->
-              <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
-                {{#if isEditing}}
-                  <!-- 'checked' has no value, so there's no value in the bind-attr rule -->
-                  <label>
-                  {{input type="checkbox" class="toggle" checked=isCompleted}}
-                  </label>
-                  <!-- do not wrap the input with a label, it will steal the click and prevent event bubbling -->
-                  <!-- uses helper in views/edit_todo_view -->
-                  {{edit-todo class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges"}}
-                {{else}}
-                  <label {{action "editTodo" on="doubleClick"}}>
-                  <!-- 'checked' has no value, so there's no value in the bind-attr rule -->
-                  {{input type="checkbox" class="toggle" checked=isCompleted}}
-                  {{title}}
-                  </label><button {{action "removeTodo"}} class="destroy">Remove</button>
-                {{/if}}
-                <span class="createdAt">{{recentDate created}}</span>
-              </li>
-            {{/each}}
-          </ul>
+          <!-- todos template will be inserted here -->
+          <!-- Naming Convention: <this-template>/index route will be rendered in outlet handlebars thing -->
+          {{outlet}}
 
           <input type="checkbox" id="toggle-all"> <label class="toggle-all" for="toggle-all">Toggle All</label>
         </section>
@@ -56,6 +36,7 @@
             <strong>{{remainingText}}</strong> {{items}} left
           </span>
           <ul id="filters">
+            <!-- TODO <a>s should not "href" invalid URLs? -->
             <li>
               <a href="all" class="selected">All</a>
             </li>
@@ -76,6 +57,32 @@
       <footer id="info">
         <p>Double-click to edit a todo</p>
       </footer>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="todos/index">
+      <ul id="todo-list">
+        {{#each itemController="todo"}}
+          <!-- binds 'completed' class to li if 'isCompleted' is 'true' -->
+          <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
+            {{#if isEditing}}
+              <!-- 'checked' has no value, so there's no value in the bind-attr rule -->
+              <label>
+              {{input type="checkbox" class="toggle" checked=isCompleted}}
+              </label>
+              <!-- do not wrap the input with a label, it will steal the click and prevent event bubbling -->
+              <!-- uses helper in views/edit_todo_view -->
+              {{edit-todo class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges"}}
+            {{else}}
+              <label {{action "editTodo" on="doubleClick"}}>
+              <!-- 'checked' has no value, so there's no value in the bind-attr rule -->
+              {{input type="checkbox" class="toggle" checked=isCompleted}}
+              {{title}}
+              </label><button {{action "removeTodo"}} class="destroy">Remove</button>
+            {{/if}}
+            <span class="createdAt">{{recentDate created}}</span>
+          </li>
+        {{/each}}
+      </ul>
     </script>
 
     <!-- TODO use a Grunt script to combine all of these scripts into one -->
