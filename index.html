@@ -55,20 +55,19 @@
             </button>
           {{/if}}
         </footer>
-
-        {{partial feed}}
       </section>
 
       <footer id="info">
         <p>Double-click to edit a todo</p>
       </footer>
+
+  
     </script>
 
-    <script type="text/x-handlebars" data-template-name="_feed">
-      Feed items!
+    <script type="text/x-handlebars" data-template-name="todos/feeds">
+      <h2>Feed items!</h2>
 
-      {{controller.feed}}
-      {{#each controller.feed}}
+      {{#each itemController="feed"}}
         URL: {{url}}
       {{/each}}
     </script>
@@ -97,6 +96,9 @@
           </li>
         {{/each}}
       </ul>
+
+      {{#link-to "todos.feeds"}}Test{{/link-to}}
+      {{outlet}}
     </script>
 
     <!-- TODO use a Grunt script to combine all of these scripts into one -->
@@ -106,6 +108,7 @@
     <script src="js/models/feed.js"></script>
     <script src="js/models/feeditem.js"></script>
     <script src="js/controllers/todos_controller.js"></script>
+    <script src="js/controllers/todos_feeds_controller.js"></script>
     <script src="js/controllers/todo_controller.js"></script>
     <script src="js/views/edit_todo_view.js"></script>
   </body>
