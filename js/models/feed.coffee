@@ -4,6 +4,7 @@ Todos.Feed = DS.Model.extend(
 
   # you have you reference other types with humanised case and with no reference to the application namespace;
   # and you cannot have a hierarchy of model types; i.e. no Todos.Feed.Item; it has to be Todos.FeedItem
+  # see: http://stackoverflow.com/questions/18588616/ember-data-not-finding-model-while-it-is-clearly-there
   # items: DS.hasMany("Todos.Feed.Item")
   items: DS.hasMany("feedItem")
 

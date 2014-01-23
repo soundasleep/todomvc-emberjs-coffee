@@ -13,6 +13,19 @@
   </head>
   <body>  
     <script type="text/x-handlebars" data-template-name="todos">
+      {{render "todos/todos" model.todos}}
+      render "todos/feeds" model.feeds
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="todos/todos">
+      <h1>{{remainingText}} {{items}} left</h1>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="todos/feeds">
+      <h1>Feed URL {{url}}</h1>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="todos.disabled">
       <section id="todoapp">
         <header id="header">
           <h1>Todos</h1>
@@ -107,6 +120,10 @@
     <script src="js/models/feeditem.js"></script>
     <script src="js/controllers/todos_controller.js"></script>
     <script src="js/controllers/todo_controller.js"></script>
+    <!--
+    <script src="js/controllers/feed_controller.js"></script>
+    <script src="js/controllers/feeditem_controller.js"></script>
+    -->
     <script src="js/views/edit_todo_view.js"></script>
   </body>
 </html>
