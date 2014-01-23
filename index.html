@@ -26,7 +26,7 @@
         <section id="main">
           <!-- todos template will be inserted here -->
           <!-- Naming Convention: <this-template>/index route will be rendered in outlet handlebars thing -->
-          {{outlet todos}}
+          {{outlet}}
 
           <input type="checkbox" id="toggle-all"> <label class="toggle-all" for="toggle-all">Toggle All</label>
         </section>
@@ -65,11 +65,25 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="todos/feeds">
-      <h2>Feed items!</h2>
+      <section id="issues">
+        <h3>Recent issues</h3>
 
-      {{#each feeds}}
-        URL: {{url}}
-      {{/each}}
+        <ul id="feeds-list">
+        {{#each feeds}}
+          {{!-- this doesn't work <a href="{{url}}">Feed</a>: --}}
+          <a {{bind-attr href=url}}>Feed</a>:
+          <ul class="feed-list">
+          {{#each items}}
+            <li>{{title}}</li>
+          {{/each}}
+          </ul>
+        {{/each}}
+        </ul> 
+
+        <footer>
+          Select an issue to add it as a todo item.
+        </footer>
+      </section>
     </script>
 
     <script type="text/x-handlebars" data-template-name="todos/index">

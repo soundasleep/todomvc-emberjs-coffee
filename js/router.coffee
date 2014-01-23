@@ -5,13 +5,14 @@ Todos.Router.map ->
 			@route 'active'
 			@route 'completed'
 			# also a route todos.index which is always present
-			# @route 'feeds'
 
 # create a route for displaying all todos
 Todos.TodosRoute = Ember.Route.extend(
 	# I'm not sure this actually does anything
 	model: ->
-  	@store.find "todo"
+		# we still load all todos on the home page because these are used to display e.g. number of remaining items, 'clear completed' count etc
+		# which do not change as we switch between route points
+		@store.find "todo"
 
   # so we can get access to Feed too
   # Ember is designed to have a single model item for a single route? so we have to extend it this way? seems a bit weird
@@ -52,48 +53,40 @@ Todos.TodosIndexRoute = Ember.Route.extend(
 	# TODO test: can we create a renderTemplate as below, i.e. we get an implicit renderTemplate based on the naming convention of this route?
 	renderTemplate: (controller) ->
 		@render 'todos/index',
-			controller: controller
-
-		@render 'todos/index',
-			# into: 'todos',		# not necessary here, we already know which template we're rendering into?
-			outlet: 'todos',
+			# into the default outlet
 			controller: controller
 
 		@render 'todos/feeds',
-			# into: 'todos',
-			outlet: 'feeds',
+			outlet: 'feeds',				# 'into' is already 'todos' and not necessary here
 			controller: controller
 )
 
 Todos.TodosActiveRoute = Ember.Route.extend(
 	model: ->
-		@store.filter 'todo', (todo) ->			# implicit return
+		todos: @store.filter 'todo', (todo) ->			# implicit return
 			!todo.get 'isCompleted'					# implicit return
+		feeds: @store.find 'feed'					# TODO this code is being duplicated everywhere. any way to simplify it?
 
 	renderTemplate: (controller) ->
 		@render 'todos/index', 
+			controller: controller
+
+		@render 'todos/feeds',
+			outlet: 'feeds',				# 'into' is already 'todos' and not necessary here
 			controller: controller
 )
 
 Todos.TodosCompletedRoute = Ember.Route.extend(
 	model: ->
-		@store.filter 'todo', (todo) ->			# implicit return
+		todos: @store.filter 'todo', (todo) ->			# implicit return
 			todo.get 'isCompleted'					# implicit return
+		feeds: @store.find 'feed'
 
 	renderTemplate: (controller) ->
 		@render 'todos/index', 
 			controller: controller
-)
 
-Todos.TodosFeedsRoute = Ember.Route.extend(
-	model: ->
-		@store.find 'feed'
-
-# 	# renderTemplate: (controller) ->
-# 	# 	@render 'todos/feeds',
-# 	# 		controller: controller
-
-	setupController: (controller, feed) ->
-# 	# 	debugger
-# 	# 	feed.refresh()
+		@render 'todos/feeds',
+			outlet: 'feeds',				# 'into' is already 'todos' and not necessary here
+			controller: controller
 )
