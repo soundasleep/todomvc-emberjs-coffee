@@ -26,7 +26,7 @@
         <section id="main">
           <!-- todos template will be inserted here -->
           <!-- Naming Convention: <this-template>/index route will be rendered in outlet handlebars thing -->
-          {{outlet}}
+          {{outlet todos}}
 
           <input type="checkbox" id="toggle-all"> <label class="toggle-all" for="toggle-all">Toggle All</label>
         </section>
@@ -61,18 +61,22 @@
         <p>Double-click to edit a todo</p>
       </footer>
 
-  
+      {{outlet feeds}}
     </script>
 
     <script type="text/x-handlebars" data-template-name="todos/feeds">
       <h2>Feed items!</h2>
 
-      {{#each itemController="feed"}}
-        URL: {{url}}
-      {{/each}}
+      #each itemController="feed"
+        URL: url
+      /each
     </script>
 
     <script type="text/x-handlebars" data-template-name="todos/index">
+      <h2>TODO items!</h2>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="todos/index.disabled">
       <ul id="todo-list">
         {{#each itemController="todo"}}
           <!-- binds 'completed' class to li if 'isCompleted' is 'true' -->
